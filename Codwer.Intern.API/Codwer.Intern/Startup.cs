@@ -13,11 +13,9 @@ namespace Codwer.Intern
     public class Startup
     {
         private AppDbContext _appDbContext;
-        public Startup(IConfiguration configuration, AppDbContext appDbContext)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _appDbContext = appDbContext;
-
         }
 
         public IConfiguration Configuration { get; }
@@ -30,9 +28,8 @@ namespace Codwer.Intern
             services.AddDbContext<AppDbContext>();
 
             services.AddDbContext<AppDbContext>(
-                options => options.UseSqlServer(@"Server=DESKTOP-LHM98B2\MSSQLSERVER01;Database=localDatabase;Trusted_Connection = True;"));
-            //services.AddDbContext<AppDbContext>(
-            //    options => options.UseSqlServer("server=DESKTOP-LHM98B2/MSSQLSERVER01; user Id=DESKTOP-LHM98B2/CWR-Ionel-C;"));
+                options => options.UseSqlServer(@"Server = DESKTOP - LHM98B2\MSSQLSERVER01; Database = localDatabase; Trusted_Connection = True;"));
+
 
             services.AddRazorPages();
 

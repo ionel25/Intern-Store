@@ -5,14 +5,10 @@ namespace Codwer.Intern.Persistence.Context
 {
     public class AppDbContext: DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-LHM98B2\MSSQLSERVER01;Database=localDatabase;Trusted_Connection = True;");
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {  
         }
-        public AppDbContext()
-        {
-            
-        }
-        public virtual DbSet<Book> Books { get; set; }
+
+        public DbSet<Book> Books { get; set; }
     }
 }
