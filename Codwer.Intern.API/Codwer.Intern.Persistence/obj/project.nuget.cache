@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wwAsKH4KEcQcU+YhBe68rC6nOzMfCGWd2RXJiipU96ny6S54gjKV3Qlx7NoVSGZTX+OO5cXpYz4+CESx6ROI1g==",
+  "dgSpecHash": "Wg5DfpnK8nPTSz4W8VKCWZysGCwoK6S8TVcR3jOrGCeAZDIqDrtlR1CVyADgHjMWqMVaN13lEjt09WXnkrXqVA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\CWR-Ionel-C\\Desktop\\project\\Intern-Store\\Codwer.Intern.API\\codwer.intern.persistence\\Codwer.Intern.Persistence.csproj",
+  "projectFilePath": "C:\\Users\\CWR-Ionel-C\\Desktop\\project\\Intern-Store\\Codwer.Intern.API\\Codwer.Intern.Persistence\\Codwer.Intern.Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CWR-Ionel-C\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\CWR-Ionel-C\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

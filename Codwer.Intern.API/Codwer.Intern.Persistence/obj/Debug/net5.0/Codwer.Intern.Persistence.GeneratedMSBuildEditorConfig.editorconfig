@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Codwer.Intern.Persistence
-build_property.ProjectDir = C:\Users\CWR-Ionel-C\Desktop\project\Intern-Store\Codwer.Intern.API\codwer.intern.persistence\
+build_property.ProjectDir = C:\Users\CWR-Ionel-C\Desktop\project\Intern-Store\Codwer.Intern.API\Codwer.Intern.Persistence\

@@ -7,7 +7,7 @@ namespace Codwer.Intern.Persistence.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=localHost; user Id=local; password=root");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-LHM98B2\MSSQLSERVER01;Database=localDatabase;Trusted_Connection = True;");
         }
         public AppDbContext()
         {
