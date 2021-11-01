@@ -23,8 +23,6 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
   
-  <ItemGroup>
-    <ProjectReference Include="..\Codwer.Intern.Application\Codwer.Intern.Application.csproj" />
-  </ItemGroup>
+  
 
 </Project>

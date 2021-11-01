@@ -15,7 +15,7 @@ namespace Codwer.Intern.Controllers
         }
 
 
-        [HttpGet("books-name")]
+        [HttpGet("names")]
         public async Task<List<string>> GetApplicationToken()
         {
             return await _bookService.GetBooksName();
