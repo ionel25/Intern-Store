@@ -7,12 +7,16 @@ namespace Codwer.Intern.Persistence.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-LHM98B2\MSSQLSERVER01;Database=test;Trusted_Connection = True;");
+            optionsBuilder.UseSqlServer(@"Server=localhost ;Database=localDatabase;Trusted_Connection = True;");
         }
 
         public AppDbContext()
         {
         }
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Cover> Covers { get; set; }
+        public virtual DbSet<Language> Languages { get; set; }
+        public virtual DbSet<PartnerPrice> PartnerPrices  { get; set; }
     }
+
 }
