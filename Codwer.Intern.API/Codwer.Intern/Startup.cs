@@ -12,7 +12,6 @@ namespace Codwer.Intern
 {
     public class Startup
     {
-        private AppDbContext _appDbContext;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,10 +26,6 @@ namespace Codwer.Intern
 
             services.AddDbContext<AppDbContext>();
 
-            services.AddDbContext<AppDbContext>(
-                options => options.UseSqlServer(@"Server = DESKTOP - LHM98B2\MSSQLSERVER01; Database = localDatabase; Trusted_Connection = True;"));
-
-
             services.AddRazorPages();
 
             services.AddSwaggerGen(c =>
@@ -43,7 +38,7 @@ namespace Codwer.Intern
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext appDbContext)
         {
             if (env.IsDevelopment())
             {
@@ -70,6 +65,8 @@ namespace Codwer.Intern
             {
                 endpoints.MapRazorPages();
             });
+
         }
+
     } 
 }
