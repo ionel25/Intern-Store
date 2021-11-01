@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Codwer.Intern.Application\Codwer.Intern.Application.csproj" />
     <ProjectReference Include="..\Codwer.Intern.Persistence\Codwer.Intern.Persistence.csproj" />
   </ItemGroup>
 
