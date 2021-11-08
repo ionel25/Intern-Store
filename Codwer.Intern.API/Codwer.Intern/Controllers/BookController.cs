@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Codwer.Intern.Controllers
 {
     [Route("api/[controller]")]
-    class BookController : Controller
+    public class BookController : Controller
     {
         private readonly IBookService _bookService;
         public BookController(IBookService bookService) 
@@ -14,9 +14,8 @@ namespace Codwer.Intern.Controllers
             _bookService = bookService;
         }
 
-
         [HttpGet("names")]
-        public async Task<List<string>> GetApplicationToken()
+        public async Task<List<string>> GetNames()
         {
             return await _bookService.GetBooksName();
         }

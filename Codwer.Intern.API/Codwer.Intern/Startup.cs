@@ -1,3 +1,5 @@
+using Codwer.Intern.Application.Books.Services;
+using Codwer.Intern.Application.Books.Services.Implementations;
 using Codwer.Intern.Persistence.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +25,7 @@ namespace Codwer.Intern
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<IBookService, BookService>();
 
             services.AddDbContext<AppDbContext>();
 
@@ -61,10 +64,7 @@ namespace Codwer.Intern
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            app.UseEndpoints(c => c.MapControllers());
 
         }
 
