@@ -20,6 +20,7 @@ namespace Codwer.Intern.Persistence.Context
         public virtual DbSet<Cover> Covers { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<PartnerPrice> PartnerPrices  { get; set; }
+     
     }
 
 }

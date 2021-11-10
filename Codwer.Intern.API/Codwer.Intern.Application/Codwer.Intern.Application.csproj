@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Codwer.Intern.DataTransferObjects\Codwer.Intern.DataTransferObjects.csproj" />
     <ProjectReference Include="..\Codwer.Intern.Persistence\Codwer.Intern.Persistence.csproj" />
   </ItemGroup>
   

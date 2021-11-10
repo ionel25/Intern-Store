@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Codwer.Intern.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211101095132_AddFKinBook")]
-    partial class AddFKinBook
+    [Migration("20211110115716_IDChange")]
+    partial class IDChange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,6 +21,24 @@ namespace Codwer.Intern.Persistence.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Codwer.Intern.Persistence.Entities.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Author");
+                });
+
             modelBuilder.Entity("Codwer.Intern.Persistence.Entities.Book", b =>
                 {
                     b.Property<int>("Id")
@@ -28,30 +46,34 @@ namespace Codwer.Intern.Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CoverID")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDCover")
+                    b.Property<int>("CoverID")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDLanguage")
+                    b.Property<int>("EditionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDPartnerPrice")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LanguageID")
+                    b.Property<int>("LanguageID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PartnerPriceID")
+                    b.Property<int>("PartnerPriceID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Year")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorId");
+
                     b.HasIndex("CoverID");
+
+                    b.HasIndex("EditionId");
 
                     b.HasIndex("LanguageID");
 
@@ -67,12 +89,27 @@ namespace Codwer.Intern.Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("TypeCoveer")
+                    b.Property<string>("Coveer")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
                     b.ToTable("Covers");
+                });
+
+            modelBuilder.Entity("Codwer.Intern.Persistence.Entities.Edition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Edition");
                 });
 
             modelBuilder.Entity("Codwer.Intern.Persistence.Entities.Language", b =>
@@ -82,8 +119,8 @@ namespace Codwer.Intern.Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("language")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -97,10 +134,10 @@ namespace Codwer.Intern.Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("partner")
+                    b.Property<string>("Partner")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("price")
+                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -108,21 +145,58 @@ namespace Codwer.Intern.Persistence.Migrations
                     b.ToTable("PartnerPrices");
                 });
 
+            modelBuilder.Entity("Codwer.Intern.Persistence.Entities.Type", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Type");
+                });
+
             modelBuilder.Entity("Codwer.Intern.Persistence.Entities.Book", b =>
                 {
+                    b.HasOne("Codwer.Intern.Persistence.Entities.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Codwer.Intern.Persistence.Entities.Cover", "Cover")
                         .WithMany()
-                        .HasForeignKey("CoverID");
+                        .HasForeignKey("CoverID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Codwer.Intern.Persistence.Entities.Edition", "Edition")
+                        .WithMany()
+                        .HasForeignKey("EditionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Codwer.Intern.Persistence.Entities.Language", "Language")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("LanguageID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Codwer.Intern.Persistence.Entities.PartnerPrice", "PartnerPrice")
                         .WithMany()
-                        .HasForeignKey("PartnerPriceID");
+                        .HasForeignKey("PartnerPriceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
 
                     b.Navigation("Cover");
+
+                    b.Navigation("Edition");
 
                     b.Navigation("Language");
 
