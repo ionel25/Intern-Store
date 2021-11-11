@@ -8,5 +8,6 @@ namespace Codwer.Intern.Application.Books.Services
     public interface IBookService
     {
         Task<List<string>> GetBooksName();
+        Task<List<string>> GetBooksAuthor();
     }
 }

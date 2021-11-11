@@ -17,7 +17,14 @@ namespace Codwer.Intern.Application.Books.Services.Implementations
 
         public async Task<List<string>> GetBooksName()
         {
-            return await _appDbContext.Books.Select(s => s.Name).ToListAsync();
+            return await _appDbContext.Books.Select(b => b.Name).ToListAsync();
         }
+
+        public async Task<List<string>> GetBooksAuthor()
+        {
+            return await _appDbContext.Author
+                .Select(b =>b.FirstName).ToListAsync();
+        }
+        
     }
 }

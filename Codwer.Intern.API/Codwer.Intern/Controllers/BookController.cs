@@ -19,5 +19,12 @@ namespace Codwer.Intern.Controllers
         {
             return await _bookService.GetBooksName();
         }
+
+        [HttpGet("author")]
+        public async Task<List<string>> GetAuthor()
+        {
+            return await _bookService.GetBooksAuthor();
+        }
     }
 }
+
