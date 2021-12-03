@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Codwer.Intern.Application.Books.Services;
-using Codwer.Intern.DataTransferObjects.Books;
-using Codwer.Intern.Persistence.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Codwer.Intern.DataTransferObjects.Books;
+
 
 namespace Codwer.Intern.Controllers
 {
@@ -18,104 +17,29 @@ namespace Codwer.Intern.Controllers
             _bookService = bookService;
         }
 
-        [HttpGet("names")]
-        public async Task<List<string>> GetNames()
+        [HttpGet("get-books")]
+        public async Task<List<string>> GetBook()
         {
-            return await _bookService.GetBooksName();
-        }
-        //Extrage informatia din baza de date
-        [HttpGet("year")]
-        public async Task<List<DateTime>> GetYear(int page,int produs)
-        {
-            return await _bookService.GetBooksYear(page,produs);
+            return await _bookService.GetBooks();
         }
 
-        [HttpGet("all-information")]
-        public async Task<List<BookInformation>> GetAllInformation()
+        [HttpPost("add-book")]
+        public async Task<int> AddBook([FromBody]BookDTO obj)
         {
-            return await _bookService.GetAllInformation();
-        }
-        [HttpGet("GetEditionID")]
-        public async Task<List<BookInformation>> GetAllBooksEditID(int id)
-        {
-            return await _bookService.GetAllInformationEdit(id);
+            return await _bookService.AddBooks(obj);
         }
 
-        
-        
-        
-        
-        
-        
-        //Adauga date in baza de daste si anume intr-un anumit tabel
-        [HttpPost("introduction-info-Author")]
-        public async Task<AuthorObj> SetAuthor( AuthorObj obj)
+        [HttpPut("update-book")]
+        public async Task<BookDTO> UpdateBook(BookDTO obj)
         {
-            return await _bookService.SetAuthor(obj);
-        }
-       
-        [HttpPost("Introduction-info-Cover")]
-        public async Task<CoverDto> SetCover( CoverDto obj)
-        {
-            return await _bookService.SetCover(obj);
-
-        }
-        
-        [HttpPost("edition")]
-        public async Task<EditionDbo> SetEdition(EditionDbo obj)
-        {
-            return await _bookService.SetEdition(obj);
-
-        }
-        [HttpPost("partner")]
-        public async Task<PartnerDbo> SetPartner(PartnerDbo obj)
-        {
-            return await _bookService.SetPartner(obj);
-
-        }
-        [HttpPost("Language")]
-        public async Task<LanguageDbo> SetLanguage(LanguageDbo obj)
-        {
-            return await _bookService.SetLanguage(obj);
-
-        }
-        [HttpPost("Type")]
-        public async Task<TypeDbo> SetType(TypeDbo obj)
-        {
-            return await _bookService.SetType(obj);
-
+            return await _bookService.UpdateBooks(obj);
         }
 
-        [HttpPost("allbooksIdinfor")]
-        public async Task<BookInformation> SetBookInfo(BookInformationWithoutID obj)
+        [HttpDelete("delete-book")]
+        public async Task<BookDTO> DeleteBook(BookDTO obj)
         {
-            return await _bookService.SetBookInfo(obj);
+            return await _bookService.DeleteBooks(obj);
         }
-
-
-
-        //Sterge date din baza de date 
-
-        [HttpDelete("delete-Information")]
-        public async Task<List<BookInformation>> DeleteBooks(int bookid)
-        {
-            return await _bookService.DeleteBook(bookid);
-        }
-            
-    
-        //HttpPut -Face update in baza de date
-        [HttpPut("modify-author")]
-        public async Task<bool> UpDateAuthor(int authorId, AuthorObj obj)
-        {
-            return await _bookService.UpDateAuthor(authorId, obj);
-                
-        }
-
-        
-    
-    
-    
-    
-    
     }
 }
+
